@@ -23,9 +23,9 @@ public class Contact
 	String name;
 	String email;
 	int cou=0;
-	public Node head = null;    
-    public Node tail = head; 
-    public Node temp = head;
+	Node head = null;    
+    Node tail = head; 
+    Node temp = head;
     public boolean check(String na,int count)
     {   
     	int x=0;
@@ -183,7 +183,7 @@ public class Contact
         }
         temp.next = tail.next;
         }
-        prints.println("Contact " + tail.name + " got removed:");
+        
         }
     }
     public void removebynumber(Long num)
@@ -216,7 +216,7 @@ public class Contact
         }
         temp.next = tail.next; 
         }
-        prints.println("Contact " + tail.name + " got removed:");
+       
         }
     }
     public void search(String na)
@@ -228,11 +228,8 @@ public class Contact
     	   prints.println("List is empty");    
            return;    
        }
-       if(!check(c,cou))
-     	 {
-     		
-     	 }
-       else
+       
+       if(check(c,cou))
        {
         while(!(c.equals(tail.name)))
         { 
