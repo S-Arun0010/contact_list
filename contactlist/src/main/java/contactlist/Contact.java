@@ -126,9 +126,10 @@ public class Contact
     	   
     	 
         if(head == null) {    
-        	prints.println("List is empty");    
-            return;    
+        	prints.println("List is empty");       
         } 
+        else
+        {
         if(!check(name,cou))
    	 {
    		return; 
@@ -149,6 +150,7 @@ public class Contact
         temp.next = tail.next;  
         }
         prints.println("Contact " + tail.name + " got removed:");
+        }
     }
     public void removebymail(String mail)
     {    
@@ -157,8 +159,10 @@ public class Contact
     	
         if(head == null) {    
         	prints.println("List is empty");    
-            return;    
+               
         }  
+        else
+        {
         if(!check(mail,cou))
    	 {
    		return; 
@@ -180,6 +184,7 @@ public class Contact
         temp.next = tail.next;
         }
         prints.println("Contact " + tail.name + " got removed:");
+        }
     }
     public void removebynumber(Long num)
     {
@@ -188,8 +193,10 @@ public class Contact
         
         if(head == null) {    
         	prints.println("List is empty");    
-            return;    
+               
         } 
+        else
+        {
         if(!check(num,cou))
       	 {
       		return; 
@@ -210,6 +217,7 @@ public class Contact
         temp.next = tail.next; 
         }
         prints.println("Contact " + tail.name + " got removed:");
+        }
     }
     public void search(String na)
     {
@@ -222,7 +230,7 @@ public class Contact
        }
        if(!check(c,cou))
      	 {
-     		return; 
+     		
      	 }
        else
        {
@@ -242,13 +250,15 @@ public class Contact
             
         if(head == null) {    
         	prints.println("List is empty");    
-            return;    
-        }      
+              
+        }  
+        else
+        {
         while(tail != null) {    
         	prints.println(tail.name + " " + tail.phone + " " + tail.email);    
             tail = tail.next;    
-        }    
-        System.out.println();    
+        } 
+        }
     }   
 	
 	public static void main(String[] args)
