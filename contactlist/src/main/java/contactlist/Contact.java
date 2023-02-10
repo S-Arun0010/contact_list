@@ -22,6 +22,7 @@ public class Contact
 	long phone;
 	String name;
 	String email;
+	String printing = "List is empty";
 	int cou=0;
 	Node head = null;    
     Node tail = head; 
@@ -100,7 +101,7 @@ public class Contact
     { 
     	if(head == null)
     	{    
-    		prints.println("List is empty");    
+    		prints.println(printing);    
         return;    
         }
     	if(head.next == null)
@@ -126,7 +127,7 @@ public class Contact
     	   
     	 
         if(head == null) {    
-        	prints.println("List is empty");       
+        	prints.println(printing);       
         } 
         else
         {
@@ -158,7 +159,7 @@ public class Contact
     	 
     	
         if(head == null) {    
-        	prints.println("List is empty");    
+        	prints.println(printing);    
                
         }  
         else
@@ -192,7 +193,7 @@ public class Contact
         Long c=num;
         
         if(head == null) {    
-        	prints.println("List is empty");    
+        	prints.println(printing);    
                
         } 
         else
@@ -225,7 +226,7 @@ public class Contact
     	 temp = head;
        String c=na;
        if(head == null) {    
-    	   prints.println("List is empty");    
+    	   prints.println(printing);    
            return;    
        }
        
@@ -246,7 +247,7 @@ public class Contact
         tail = head;    
             
         if(head == null) {    
-        	prints.println("List is empty");    
+        	prints.println(printing);    
               
         }  
         else
