@@ -39,7 +39,7 @@ public class Contact
     {
     	
     	tail =head;
-    	while(!(reference == tail.phone) && tail.next!=null)
+    	while((reference != tail.phone) && tail.next!=null)
         { 
             temp = tail;
             tail = tail.next; 
@@ -145,7 +145,7 @@ public class Contact
         }
         else
         {
-        while(!(num == tail.phone))
+        while(num != tail.phone)
         { 
             temp = tail;
             tail = tail.next;
@@ -166,7 +166,7 @@ public class Contact
        
        if(check(number))
        {
-        while(!(number == tail.phone))
+        while(number != tail.phone)
         { 
             temp = tail;
             tail = tail.next;            
