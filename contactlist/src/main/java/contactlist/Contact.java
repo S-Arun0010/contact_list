@@ -3,44 +3,28 @@ import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.*;
-class Node{    
-    String name;
-    long phone;
-    String email;   
-    Node next;    
-        
-    public Node(String name,long phone,String email) {    
-        this.name = name;  
-        this.phone = phone;
-        this.email = email;
-        this.next = null;    
-    }    
-}
 public class Contact 
-  {
+  { 
+	 
 	static PrintStream prints = new PrintStream(new FileOutputStream(FileDescriptor.out));
 	long phone;
 	String name;
 	String email;
 	String printing = "List is empty";
-	int cou=0;
+	int count=0;
 	Node head = null;    
     Node tail = head; 
     Node temp = head;
-    public boolean check(String na,int count)
+    public boolean check(String reference,int count)
     {   
     	int x=0;
     	tail =head;
-    	while(!(na.equals(tail.name)) && tail.next!=null)
+    	while(!(reference.equals(tail.email)) && tail!=null )
         { 
             temp = tail;
             tail = tail.next; 
-            if(count == x)
-            {
-            	return false;
-            }
         }
-    	if(tail.name.equals(na))
+    	if(tail.email.equals(reference))
     	{
     		return true;
     	}
@@ -51,26 +35,22 @@ public class Contact
     	}
     	
     }
-    public boolean check(Long c,int count)
+    public boolean check(Long reference,int count)
     {
     	int x=0;
     	tail =head;
-    	while(!(c.equals(tail.phone)) && tail.next!=null)
+    	while(!(reference == tail.phone) && tail.next!=null)
         { 
             temp = tail;
             tail = tail.next; 
-            if(count == x)
-            {
-            	return false;
-            }
         }
-    	if(tail.name.equals(c))
+    	if(tail.phone == reference)
     	{
     		return true;
     	}
     	else
     	{
-    		prints.println("Name is not in the list");
+    		prints.println("Number  is not in the list");
     	return false;
     	}
     }
@@ -79,26 +59,23 @@ public class Contact
     	
         Node newNode = new Node(name,phone,email);  
         tail = head;
-        temp = head;
         if(head == null) {        
             head = newNode;    
-            tail = newNode;
-           
+            tail = head;           
         }    
         else {       
         	while(tail.next != null)
             {
-                temp = tail;
                 tail = tail.next;
             }
             tail.next = newNode;
-            temp = newNode;
-            temp.next = null;
+            newNode.next = null;
         } 
-        cou++;
+        count++;
     } 
     public void remove()
-    { 
+    {   
+    	tail = head;
     	if(head == null)
     	{    
     		prints.println(printing);    
@@ -109,66 +86,32 @@ public class Contact
     		head=null;
     	}
     	else
-    	{
-    	tail = head;
-        temp = null;
-     
+    	{     
     	while(tail.next != null)
         {
             temp = tail;
             tail = tail.next;
         }
         temp.next = tail.next;
+    	tail = tail.next;
     	}
     }
-    public void removebyname(String name)
-    {
-    	 String c=name;
-    	   
-    	 
-        if(head == null) {    
-        	prints.println(printing);       
-        } 
-        else
-        {
-        if(!check(name,cou))
-   	 {
-   		return; 
-   	 }
-        if(c.equals(head.name))
-    	{
-    		head=head.next;
-    	}
-        else
-        { 
-        	tail = head; 
-       	    temp = head;
-        while(!(c.equals(tail.name)))
-        { 
-            temp = tail;
-            tail = tail.next;
-        }
-        temp.next = tail.next;  
-        }
-        prints.println("Contact " + tail.name + " got removed:");
-        }
-    }
+    
     public void removebymail(String mail)
     {    
-    	 String c=mail;
+    	 //String c=mail;
     	 
     	
         if(head == null) {    
-        	prints.println(printing);    
-               
+        	prints.println(printing);           
         }  
         else
         {
-        if(!check(mail,cou))
+        if(!check(mail,count))
    	 {
    		return; 
    	 }
-        if(c.equals(head.email) )
+        if(mail.equals(head.email) )
         {
         	head = head.next;
         }
@@ -177,7 +120,7 @@ public class Contact
         	tail = head;
        	 temp = head;
            
-        while(!(c.equals(tail.email)))
+        while(!(mail.equals(tail.email)))
         { 
             temp = tail;
             tail = tail.next;
@@ -189,28 +132,23 @@ public class Contact
     }
     public void removebynumber(Long num)
     {
-    	 
-        Long c=num;
-        
+    	tail = head;
         if(head == null) {    
-        	prints.println(printing);    
-               
+        	prints.println(printing);            
         } 
         else
         {
-        if(!check(num,cou))
+        if(!check(num,count))
       	 {
       		return; 
       	 }
-        if(c.equals(head.phone))
+        if(num == head.phone)
         {
         	head = head.next;
         }
         else
         {
-        	tail = head;
-       	 temp = head;
-        while(!(c.equals(tail.phone)))
+        while(!(num == tail.phone))
         { 
             temp = tail;
             tail = tail.next;
@@ -230,7 +168,7 @@ public class Contact
            return;    
        }
        
-       if(check(c,cou))
+       if(check(c,count))
        {
         while(!(c.equals(tail.name)))
         { 
@@ -247,8 +185,7 @@ public class Contact
         tail = head;    
             
         if(head == null) {    
-        	prints.println(printing);    
-              
+        	prints.println(printing);         
         }  
         else
         {
@@ -257,53 +194,69 @@ public class Contact
             tail = tail.next;    
         } 
         }
-    }   
+    } 
+    public static Long getinput()
+    {   
+    	Scanner sc = new Scanner(System.in);
+    	Long phonenumber;
+    	 do
+		 {
+			 try
+			 {   sc = new Scanner(System.in);
+				 phonenumber = sc.nextLong();
+				 break; 
+			 }
+			 catch(InputMismatchException e)
+			 {
+				 prints.println(e);
+				 prints.println("Re-Enter the phonenumber");
+			 }
+		 }while(true);
+    	 return phonenumber;
+    	
+    }
 	
-	public static void main(String[] args)
+    public static  void main(String[] args)
     {	
 		Scanner sc = new Scanner(System.in);
 		Scanner s = new Scanner(System.in);
 	 Contact a = new Contact();
-	 String n;
-	 long ph;
+	 String name;
+	 long phonenumber;
 	 String mail;
-	 String ca;
+	 String choice;
 	 prints.println("Enter the operation: Add , Remove ,Remove by phonenumber,Remove by name,Remove by Email, Search , display  ");
-	 int c=0;
+	 int option=0;
 	 do
 	 {	
-		ca = sc.nextLine();
-	 switch (ca)
+		choice = sc.nextLine();
+	 switch (choice)
 	 {	 
 	 case "Add":
 		 prints.println("Enter the name,Email ,phone number of the contact:");
-		 n= sc.nextLine();
+		 name= sc.nextLine();
 		 mail = sc.nextLine();
-		 ph =s.nextLong(); 
-		 a.addNode(n, ph, mail);
+		 phonenumber = getinput();
+		 a.addNode(name, phonenumber, mail);
 		 break;
 	 case "Remove":
 		 a.remove();
 		 break;
 	 case "Remove by phonenumber":
 		 prints.println("Enter the phone number of the contact to remove:");
-		 Long number = s.nextLong();
-		 a.removebynumber(number);
-		 break;
-	 case "Remove by name":
-		 prints.println("Enter the Name of the contact to remove:");
-		 String name = sc.nextLine();
-		 a.removebyname(name);
+		 phonenumber = getinput();
+		 a.removebynumber(phonenumber);
+		 
 		 break;
 	 case "Remove by email":
 		 prints.println("Enter the mail_id of the contact to remove:");
-		 String email = sc.nextLine();
-		 a.removebymail(email);
+		 mail = sc.nextLine();
+		 a.removebymail(mail);
 		 break;
 	 case "search":
 		 prints.println("Enter the name of the contact to search:");
-		 String nam =sc.nextLine();
-		 a.search(nam);
+		 name =sc.nextLine();
+		 a.search(name);
 		 break;
 	 case "Display":
 		 a.display();
@@ -311,11 +264,24 @@ public class Contact
 	default:
 		prints.println("Enter the valid operation:");
 		break;	  
-	 }
-	 prints.println("press 0 to stop the operation or 1 to continue:");
-	  c=s.nextInt();
+	 } 
+	 do
+	 {
+		 try
+		 {   
+			 s = new Scanner(System.in);
+			 prints.println("press 0 to stop the operation or 1 to continue:");
+			 option=s.nextInt();
+			 break;
+		 }
+		 catch(InputMismatchException e)
+		 {
+			 prints.println(e);
+		 }
+	 }while(true);
+	
 	  
-	 }while(c != 0);
+	 }while(option != 0);
 		  
     }	
 }
