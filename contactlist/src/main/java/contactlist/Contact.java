@@ -15,9 +15,9 @@ public class Contact
 	Node head = null;    
     Node tail = head; 
     Node temp = head;
-    public boolean check(String reference,int count)
+    public boolean check(String reference)
     {   
-    	int x=0;
+    	
     	tail =head;
     	while(!(reference.equals(tail.email)) && tail!=null )
         { 
@@ -35,9 +35,9 @@ public class Contact
     	}
     	
     }
-    public boolean check(Long reference,int count)
+    public boolean check(Long reference)
     {
-    	int x=0;
+    	
     	tail =head;
     	while(!(reference == tail.phone) && tail.next!=null)
         { 
@@ -99,15 +99,12 @@ public class Contact
     
     public void removebymail(String mail)
     {    
-    	 //String c=mail;
-    	 
-    	
         if(head == null) {    
         	prints.println(printing);           
         }  
         else
         {
-        if(!check(mail,count))
+        if(!check(mail))
    	 {
    		return; 
    	 }
@@ -138,7 +135,7 @@ public class Contact
         } 
         else
         {
-        if(!check(num,count))
+        if(!check(num))
       	 {
       		return; 
       	 }
@@ -158,19 +155,18 @@ public class Contact
        
         }
     }
-    public void search(String na)
+    public void search(long number)
     {
     	 tail = head;
     	 temp = head;
-       String c=na;
        if(head == null) {    
     	   prints.println(printing);    
            return;    
        }
        
-       if(check(c,count))
+       if(check(number))
        {
-        while(!(c.equals(tail.name)))
+        while(!(number == tail.phone))
         { 
             temp = tail;
             tail = tail.next;            
@@ -178,9 +174,8 @@ public class Contact
         prints.println("Name :" + tail.name);
         prints.println("Ph_No:" + tail.phone);  
         prints.println("Email:" + tail.email);
-       }
-       
-  }
+       }      
+      }
     public void display() {      
         tail = head;    
             
@@ -254,9 +249,9 @@ public class Contact
 		 a.removebymail(mail);
 		 break;
 	 case "search":
-		 prints.println("Enter the name of the contact to search:");
-		 name =sc.nextLine();
-		 a.search(name);
+		 prints.println("Enter the phone number of the contact to search:");
+		phonenumber =getinput();
+		 a.search(phonenumber);
 		 break;
 	 case "Display":
 		 a.display();
